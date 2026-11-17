@@ -1,0 +1,73 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+# @elevvo/react-ui
+
+A small, accessible component library and design system: **Button**, **Input**,
+**Modal** and **Card**, styled with **Tailwind CSS v4** design tokens.
+
+## Install
+
+```bash
+npm install @elevvo/react-ui
+```
+
+Peer dependencies: `react` and `react-dom` (18 or 19).
+
+## Usage
+
+```jsx
+import { Button, Input, Modal, Card } from '@elevvo/react-ui';
+import '@elevvo/react-ui/styles.css';
+
+export function Example() {
+  return (
+    <Card>
+      <Card.Header>Newsletter</Card.Header>
+      <Card.Body>
+        <Input label="Email" type="email" hint="We never share it." />
+      </Card.Body>
+      <Card.Footer>
+        <Button variant="primary">Subscribe</Button>
+      </Card.Footer>
+    </Card>
+  );
+}
+```
+
+## What's inside
+
+| Component | Purpose | Key a11y guarantees |
+| --- | --- | --- |
+| `Button` | Primary action | Native `<button>`, `aria-busy` while loading, keyboard operable |
+| `Input` | Labelled text field | `label` binding, `aria-describedby` for hint/error, `aria-invalid` |
+| `Modal` | Dialog in a portal | `role="dialog"` + `aria-modal`, focus trap, Escape close, focus restore |
+| `Card` | Content surface | Semantic regions, interactive variant renders a real `<button>` |
+
+## Design tokens
+
+Colours, radii and shadows are defined as Tailwind v4 `@theme` tokens and
+compiled into `styles.css`, so every consumer gets the same palette. See
+[Foundations → Design Tokens](/docs/foundations-design-tokens).
+
+## Testing
+
+- **Unit tests** — Jest + React Testing Library (`npm test`). Every interaction
+  (click, type, Escape, Tab trap) is proven by a test.
+- **Accessibility** — the Storybook **a11y addon** (`@storybook/addon-a11y`)
+  audits every story with axe-core. Open the *Accessibility* panel in the
+  sidebar to see violations, passes and incomplete checks, or use the toolbar
+  toggle to simulate vision impairments.
+
+## Scripts
+
+```bash
+npm test              # Jest unit tests
+npm run test:watch    # watch mode
+npm run storybook     # develop & document components
+npm run build-storybook
+npm run build         # library bundle (ESM + CJS + CSS) into dist/
+npm run pack:check    # list the files that would be published
+npm run release:dry   # simulate `npm publish` (restricted scope)
+```

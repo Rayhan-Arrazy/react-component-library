@@ -1,0 +1,76 @@
+{
+  "name": "@elevvo/react-ui",
+  "version": "0.1.0",
+  "description": "Reusable component library and design system (Button, Input, Modal, Card) built with React, Tailwind CSS, and Storybook.",
+  "license": "MIT",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "scripts": {
+    "build": "vite build && npm run build:css",
+    "build:js": "vite build",
+    "build:css": "tailwindcss -i ./src/styles/index.css -o ./dist/styles.css --minify",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "pack:check": "npm pack --dry-run",
+    "release:dry": "npm publish --dry-run"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.13",
+    "@babel/preset-env": "^7.29.7",
+    "@babel/preset-react": "^7.29.7",
+    "@storybook/addon-a11y": "^10.6.5",
+    "@storybook/addon-docs": "^10.6.5",
+    "@storybook/react-vite": "^10.6.5",
+    "@tailwindcss/cli": "^4.3.4",
+    "@tailwindcss/vite": "^4.3.4",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.3",
+    "@vitejs/plugin-react": "^5.2.0",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "storybook": "^10.6.5",
+    "tailwindcss": "^4.3.4",
+    "vite": "^7.3.7"
+  },
+  "keywords": [
+    "react",
+    "design-system",
+    "component-library",
+    "storybook",
+    "tailwindcss",
+    "accessibility"
+  ],
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

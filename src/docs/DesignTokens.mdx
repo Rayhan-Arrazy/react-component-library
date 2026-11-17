@@ -1,0 +1,67 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Design Tokens" />
+
+# Design tokens
+
+Tokens live in `src/styles/index.css` as Tailwind v4 `@theme` variables. They
+compile to CSS custom properties (e.g. `--color-brand-600`) **and** unlock the
+matching utilities (`bg-brand-600`, `text-neutral-700`, `rounded-card`, …).
+
+## Brand
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12 }}>
+  {[50, 100, 200, 300, 400, 500, 600, 700, 800, 900].map((n) => (
+    <div key={`brand-${n}`}>
+      <div style={{ height: 44, borderRadius: 8, background: `var(--color-brand-${n})`, border: '1px solid rgba(15,23,42,.08)' }} />
+      <code style={{ fontSize: 12 }}>brand-{n}</code>
+    </div>
+  ))}
+</div>
+
+## Neutrals
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12 }}>
+  {[50, 100, 200, 300, 400, 500, 600, 700, 800, 900].map((n) => (
+    <div key={`neutral-${n}`}>
+      <div style={{ height: 44, borderRadius: 8, background: `var(--color-neutral-${n})`, border: '1px solid rgba(15,23,42,.08)' }} />
+      <code style={{ fontSize: 12 }}>neutral-{n}</code>
+    </div>
+  ))}
+</div>
+
+## Semantic status
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+  {[
+    ['success-500', 'var(--color-success-500)'],
+    ['warning-500', 'var(--color-warning-500)'],
+    ['danger-600', 'var(--color-danger-600)'],
+  ].map(([name, value]) => (
+    <div key={name}>
+      <div style={{ height: 44, borderRadius: 8, background: value, border: '1px solid rgba(15,23,42,.08)' }} />
+      <code style={{ fontSize: 12 }}>{name}</code>
+    </div>
+  ))}
+</div>
+
+## Non-colour tokens
+
+| Token | CSS variable | Tailwind utility |
+| --- | --- | --- |
+| Card radius | `--radius-card` | `rounded-card` |
+| Card shadow | `--shadow-card` | `shadow-card` |
+| Hover shadow | `--shadow-card-hover` | `shadow-card-hover` |
+| Font family | `--font-sans` | `font-sans` |
+
+## Extending
+
+Override any token from your own stylesheet after importing the package CSS:
+
+```css
+@import '@elevvo/react-ui/styles.css';
+
+@theme {
+  --color-brand-600: #0f766e; /* your brand colour */
+}
+```
